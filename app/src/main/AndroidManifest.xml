@@ -6,10 +6,11 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+        android:name=".model.Facade">
 
         <activity
-            android:name="br.com.jpttrindade.p3.simpleappkit.KitActivity"
+            android:name=".control.ActivityMenu"
             android:label="@string/title_activity_kit" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

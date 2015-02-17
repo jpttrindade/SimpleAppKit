@@ -1,4 +1,4 @@
-package br.com.jpttrindade.p3.simpleappkit;
+package br.com.jpttrindade.p3.simpleappkit.control;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
