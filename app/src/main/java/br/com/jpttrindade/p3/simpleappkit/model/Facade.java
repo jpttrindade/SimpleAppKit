@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Intent;
 import android.database.Cursor;
 
+import br.com.jpttrindade.p3.simpleappkit.model.business.scanfunctions.InsertOrUpdateFunctionService;
 import br.com.jpttrindade.p3.simpleappkit.model.business.scanfunctions.NegocioScanFunctions;
 import br.com.jpttrindade.p3.simpleappkit.model.data.Database;
 import br.com.jpttrindade.p3.simpleappkit.model.data.DatabaseContract;
@@ -35,7 +36,7 @@ public class Facade extends Application {
     }
 
 
-    private void sendBroadcastScanFunctions() {
+    public void sendBroadcastScanFunctions() {
 
         negocioScanFunctions.sendBroadcastScanFunctions();
 
@@ -43,5 +44,11 @@ public class Facade extends Application {
 
     public long insertOrUpdateFunction(Function function) {
        return negocioScanFunctions.insertOrUpdateFunction(db, function);
+    }
+
+    public void startServiceToInsertOrUpdate(Function function) {
+        Intent intent = new Intent(this, InsertOrUpdateFunctionService.class);
+        intent.putExtra(NegocioScanFunctions.NEW_FUNCTION, function);
+        startService(intent);
     }
 }

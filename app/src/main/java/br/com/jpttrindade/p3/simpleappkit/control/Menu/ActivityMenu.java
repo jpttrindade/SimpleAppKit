@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
 
 import br.com.jpttrindade.p3.simpleappkit.R;
+import br.com.jpttrindade.p3.simpleappkit.model.Facade;
 
 
 public class ActivityMenu extends FragmentActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks, FragmentMenu.OnFragmentInteractionListener{
@@ -21,11 +22,14 @@ public class ActivityMenu extends FragmentActivity implements NavigationDrawerFr
     private CharSequence mTitle;
     Fragment frag;
 
+    private Facade facade;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_activity_menu);
 
+        facade = (Facade) getApplication();
         mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
 
@@ -109,6 +113,8 @@ public class ActivityMenu extends FragmentActivity implements NavigationDrawerFr
             return true;
         }else if (id == R.id.refresh){
             Log.d("DEBUG", "refresh");
+            facade.sendBroadcastScanFunctions();
+            //TODO: precisa notificar o LOADER da atualização.
             return false;
         }
 
