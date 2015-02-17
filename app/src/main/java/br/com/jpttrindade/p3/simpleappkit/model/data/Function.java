@@ -5,6 +5,9 @@ package br.com.jpttrindade.p3.simpleappkit.model.data;
  */
 public class Function {
 
-    String nome;
-    String action;
+    public static final String FNOME = "fnome";
+    public static final String FACTION = "faction";
+
+    public String nome;
+    public String action;
 }

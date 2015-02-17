@@ -10,7 +10,7 @@
         android:name=".model.Facade">
 
         <activity
-            android:name=".control.ActivityMenu"
+            android:name=".control.Menu.ActivityMenu"
             android:label="@string/title_activity_kit" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,6 +19,11 @@
             </intent-filter>
         </activity>
 
+        <receiver android:name=".control.scanfunctions.NewAppReceiver">
+            <intent-filter>
+                <action android:name="br.ufpe.cin.p3.simpleappkit.getnewactions"/>
+            </intent-filter>
+        </receiver>
 
     </application>
 

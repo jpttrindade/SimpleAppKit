@@ -1,4 +1,4 @@
-package br.com.jpttrindade.p3.simpleappkit.control;
+package br.com.jpttrindade.p3.simpleappkit.control.Menu;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -11,12 +11,12 @@ import br.com.jpttrindade.p3.simpleappkit.model.Facade;
  * Created by jpttrindade on 17/02/15.
  */
 
-public class FunctionLoader extends AsyncTaskLoader<Cursor> {
+public class LoaderMenu extends AsyncTaskLoader<Cursor> {
     public static final int ID = 1;
     private Cursor c;
     private Facade facade;
 
-    public FunctionLoader(Context context){
+    public LoaderMenu(Context context){
         super(context);
         facade = (Facade)context.getApplicationContext();
     }

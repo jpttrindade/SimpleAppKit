@@ -1,4 +1,4 @@
-package br.com.jpttrindade.p3.simpleappkit.control;
+package br.com.jpttrindade.p3.simpleappkit.control.Menu;
 
 import android.app.Activity;
 import android.database.Cursor;
@@ -95,7 +95,7 @@ public class FragmentMenu extends ListFragment implements LoaderManager.LoaderCa
 
         setListAdapter(mAdapter);
 
-        getLoaderManager().initLoader(FunctionLoader.ID, null, this);
+        getLoaderManager().initLoader(LoaderMenu.ID, null, this);
     }
 
     @Override
@@ -106,8 +106,10 @@ public class FragmentMenu extends ListFragment implements LoaderManager.LoaderCa
             // Notify the active callbacks interface (the activity, if the
             // fragment is attached to one) that an item has been selected.
 
-            //TODO: ver como setar a tag pelo simplecursoradapter
-            String action = ""+id;//(String) v.getTag();
+            Cursor c = mAdapter.getCursor();
+
+            c.moveToPosition(position);
+            String action = c.getString(2);
 
             mListener.onFragmentInteraction(action);
         }
@@ -124,7 +126,7 @@ public class FragmentMenu extends ListFragment implements LoaderManager.LoaderCa
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new FunctionLoader(getActivity());
+        return new LoaderMenu(getActivity());
     }
 
     @Override
@@ -136,7 +138,7 @@ public class FragmentMenu extends ListFragment implements LoaderManager.LoaderCa
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-
+        mAdapter.swapCursor(null);
     }
 
     /**

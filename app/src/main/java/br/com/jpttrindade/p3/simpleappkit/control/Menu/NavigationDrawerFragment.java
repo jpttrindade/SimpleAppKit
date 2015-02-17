@@ -1,4 +1,4 @@
-package br.com.jpttrindade.p3.simpleappkit.control;
+package br.com.jpttrindade.p3.simpleappkit.control.Menu;
 
 
 import android.app.Activity;
