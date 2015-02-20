@@ -2,6 +2,7 @@ package br.com.jpttrindade.p3.simpleappkit.control.Menu;
 
 
 import android.app.ActionBar;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
+import android.widget.Toast;
 
 import br.com.jpttrindade.p3.simpleappkit.R;
 import br.com.jpttrindade.p3.simpleappkit.model.Facade;
@@ -30,6 +32,8 @@ public class ActivityMenu extends FragmentActivity implements NavigationDrawerFr
         setContentView(R.layout.layout_activity_menu);
 
         facade = (Facade) getApplication();
+        facade.sendBroadcastScanFunctions();
+
         mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
 
@@ -48,20 +52,7 @@ public class ActivityMenu extends FragmentActivity implements NavigationDrawerFr
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
-        /*// update the main content by replacing fragments
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                .commit();*/
 
-        //TODO: implementar esse switch com as opções do menu.
-        switch (position){
-            case 1:
-
-            case 2:
-
-
-        }
 
     }
 
@@ -126,9 +117,16 @@ public class ActivityMenu extends FragmentActivity implements NavigationDrawerFr
 
         Log.d("DEBUG", "Action = "+action);
         //startar a funcao da aplicacao correspondente.
-        Intent i = new Intent(action);
 
-        startActivity(i);
+
+        Intent i = new Intent(action);
+        try {
+            startActivity(i);
+
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(this, "Função não encontrada.", Toast.LENGTH_LONG).show();
+            facade.sendBroadcastScanFunctions();
+        }
 
     }
 

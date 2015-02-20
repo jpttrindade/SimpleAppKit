@@ -28,6 +28,7 @@ public class FragmentMenu extends ListFragment implements LoaderManager.LoaderCa
 
     private OnFragmentInteractionListener mListener;
 
+
     /**
      * The fragment's ListView/GridView.
      */
@@ -95,8 +96,12 @@ public class FragmentMenu extends ListFragment implements LoaderManager.LoaderCa
 
         setListAdapter(mAdapter);
 
+
+
         getLoaderManager().initLoader(LoaderMenu.ID, null, this);
     }
+
+
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
