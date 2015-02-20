@@ -16,6 +16,8 @@ public class LoaderMenu extends AsyncTaskLoader<Cursor> {
     private Cursor c;
     private Facade facade;
 
+    private Observer observer;
+
     public LoaderMenu(Context context){
         super(context);
         facade = (Facade)context.getApplicationContext();
@@ -27,6 +29,17 @@ public class LoaderMenu extends AsyncTaskLoader<Cursor> {
         if(c !=null){
             deliverResult(c);
         }
+
+        if(observer == null){
+            observer = new Observer() {
+                @Override
+                public void notificar() {
+                   LoaderMenu.this.onContentChanged();
+                }
+            };
+        }
+
+        facade.setObserver(observer);
         if(takeContentChanged()|| c ==null){
             forceLoad();
         }
@@ -80,6 +93,8 @@ public class LoaderMenu extends AsyncTaskLoader<Cursor> {
         if(c!=null && !c.isClosed()){
             c.close();
         }
-        c =null;
+        c = null;
+        facade.unsetObserver();
+        observer = null;
     }
 }

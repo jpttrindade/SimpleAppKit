@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import br.com.jpttrindade.p3.simpleappkit.control.Menu.Observer;
 import br.com.jpttrindade.p3.simpleappkit.model.data.Database;
 import br.com.jpttrindade.p3.simpleappkit.model.data.DatabaseContract;
 import br.com.jpttrindade.p3.simpleappkit.model.data.Function;
@@ -19,7 +20,7 @@ public class NegocioScanFunctions {
 
     Context ctx;
 
-
+    private Observer observer;
     public NegocioScanFunctions(Context ctx){
         this.ctx = ctx.getApplicationContext();
     }
@@ -37,7 +38,19 @@ public class NegocioScanFunctions {
         ContentValues values = new ContentValues();
         values.put(DatabaseContract.Function.COLUMN_NAME_FUNCTION_NAME, function.nome);
         values.put(DatabaseContract.Function.COLUMN_NAME_FUNCTION_ACTION, function.action);
+        long retorno = db.insert(DatabaseContract.Function.TABLE_NAME,values);
 
-        return db.insert(DatabaseContract.Function.TABLE_NAME,values);
+        if(observer != null) {
+            observer.notificar();
+        }
+        return retorno;
+    }
+
+    public void setObserver(Observer observer) {
+        this.observer = observer;
+    }
+
+    public void unsetObserver(){
+        this.observer = null;
     }
 }

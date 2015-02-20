@@ -133,6 +133,7 @@ public class FragmentMenu extends ListFragment implements LoaderManager.LoaderCa
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         if(data != null) {
             mAdapter.swapCursor(data);
+            mAdapter.notifyDataSetChanged();
         }
     }
 
