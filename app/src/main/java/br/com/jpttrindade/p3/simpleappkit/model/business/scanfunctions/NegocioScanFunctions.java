@@ -26,6 +26,9 @@ public class NegocioScanFunctions {
     }
 
     public void sendBroadcastScanFunctions() {
+
+        notificarObserver();
+
         Log.d("DEBUG", "scan function broadcast");
         Intent it = new Intent(SCAN_ACTION);
         ctx.sendBroadcast(it);
@@ -40,10 +43,14 @@ public class NegocioScanFunctions {
         values.put(DatabaseContract.Function.COLUMN_NAME_FUNCTION_ACTION, function.action);
         long retorno = db.insert(DatabaseContract.Function.TABLE_NAME,values);
 
+       notificarObserver();
+        return retorno;
+    }
+
+    private void notificarObserver() {
         if(observer != null) {
             observer.notificar();
         }
-        return retorno;
     }
 
     public void setObserver(Observer observer) {

@@ -55,8 +55,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_TABLE_FUNCTION);
-        db.execSQL(SQL_POPULATE_TABLE_FUNCTION_a);
-        db.execSQL(SQL_POPULATE_TABLE_FUNCTION_b);
+//        db.execSQL(SQL_POPULATE_TABLE_FUNCTION_a);
+ //       db.execSQL(SQL_POPULATE_TABLE_FUNCTION_b);
 
     //  db.execSQL(SQL_POPULATE_TABLE_FUNCTION_c);
 
@@ -66,5 +66,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
 
+    }
+
+    public void removeAll() {
+        getReadableDatabase().execSQL("drop table "+DatabaseContract.Function.TABLE_NAME+";" );
+        getReadableDatabase().execSQL(SQL_CREATE_TABLE_FUNCTION);
     }
 }

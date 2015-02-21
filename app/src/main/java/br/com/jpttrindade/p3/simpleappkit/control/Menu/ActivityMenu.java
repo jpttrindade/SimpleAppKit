@@ -114,7 +114,7 @@ public class ActivityMenu extends FragmentActivity implements NavigationDrawerFr
         }else if (id == R.id.refresh){
             Log.d("DEBUG", "refresh");
             facade.sendBroadcastScanFunctions();
-            //TODO: precisa notificar o LOADER da atualização.
+            ////TODO: precisa notificar o LOADER da atualização.
             return false;
         }
 

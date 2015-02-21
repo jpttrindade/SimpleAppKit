@@ -38,7 +38,7 @@ public class Facade extends Application {
 
 
     public void sendBroadcastScanFunctions() {
-
+        db.removeAll();
         negocioScanFunctions.sendBroadcastScanFunctions();
 
     }

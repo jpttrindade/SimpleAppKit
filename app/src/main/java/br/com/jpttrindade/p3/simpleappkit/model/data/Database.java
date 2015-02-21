@@ -43,6 +43,7 @@ public class Database {
     }
 
 
-
-
+    public void removeAll() {
+        helper.removeAll();
+    }
 }
